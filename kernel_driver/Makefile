@@ -16,7 +16,7 @@ include $(KERNEL_DIR)/.config
 #Add any CFLAGS that needs to be passed to driver
 EXTRA_CFLAGS += -g -DLA9310_HOST_SW_VERSION="${VERSION_STRING}" -DVERSION=${GIT_VERSION} -I${COMMON_DIR} -I${UAPI_DIR}
 obj-y += la9310shiva/
-obj-y += la9310demo/
+# obj-y += la9310demo/
 ifeq ($(IMX_RFNM),1)
 obj-y += la9310rfnm/
 endif
@@ -33,7 +33,7 @@ clean:
 
 install:
 	install  -D  la9310shiva/la9310shiva.ko ${MODULE_INSTALL_DIR}/la9310shiva.ko
-	install  -D  la9310demo/la9310demo.ko ${MODULE_INSTALL_DIR}/la9310demo.ko
+#	install  -D  la9310demo/la9310demo.ko ${MODULE_INSTALL_DIR}/la9310demo.ko
 ifeq ($(IMX_RFNM),1)
 	install  -D  la9310rfnm/la9310rfnm.ko ${MODULE_INSTALL_DIR}/la9310rfnm.ko
 	install  -D  la9310rfnm/rfnm_usb_boost.ko ${MODULE_INSTALL_DIR}/rfnm_usb_boost.ko
