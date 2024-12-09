@@ -238,7 +238,7 @@ ssize_t la9310_show_global_status(char *buf)
 {
 	struct list_head *ptr;
 	struct la9310_dev *dev = NULL;
-	sprintf(buf, "*%s\n", LA9310_HOST_SW_VERSION);
+	sprintf(buf, "*%s\n", "tere"); // LA9310_HOST_SW_VERSION);
 	sprintf(&buf[strlen(buf)], " No. of LA93xx Devices Detected = %d\n",
 			la9310_dev_id_g);
 
