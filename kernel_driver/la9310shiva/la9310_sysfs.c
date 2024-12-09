@@ -78,7 +78,7 @@ target_log_show(struct device *dev,
 	dma_map_single(&((struct pci_dev *)la9310_dev->pdev)->dev,
 			ep_log->buf, ep_log->len,
 			DMA_FROM_DEVICE);
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 5, 0)
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0)
 	dma_map_page_attrs(&la9310_dev->pdev->dev,
 			virt_to_page(ep_log->buf),
 			offset_in_page(ep_log->buf), ep_log->len,
@@ -430,7 +430,7 @@ la9310_iq_samples_size(struct device *dev,
 static ssize_t shiva_version_show(struct kobject *kobj,
 				struct kobj_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%s\n", LA9310_HOST_SW_VERSION);
+	return sprintf(buf, "%s\n", "ver1");// LA9310_HOST_SW_VERSION);
 }
 
 static ssize_t shiva_status_show(struct kobject *kobj,

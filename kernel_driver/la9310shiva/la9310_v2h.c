@@ -361,7 +361,7 @@ v2h_tasklet_handler(unsigned long data)
 						virt_addr,
 						V2H_MAX_SKB_BUFF_SIZE,
 						DMA_FROM_DEVICE);
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 5, 0)
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0)
 			dma_map_page_attrs(&la9310_dev->pdev->dev,
 						virt_to_page(virt_addr),
 						offset_in_page(virt_addr), V2H_MAX_SKB_BUFF_SIZE,
