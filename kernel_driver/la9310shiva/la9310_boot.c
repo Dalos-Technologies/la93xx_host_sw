@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: (BSD-3-Clause OR GPL-2.0)
  * Copyright 2017, 2021-2024 NXP
  */
+// sudo make install KERNEL_DIR=/opt/linux-tn-imx LA9310_COMMON_HEADERS=/home/prj/Dalos/modem/la93xx_freertos/common_headers MODULE_INSTALL_DIR=/lib/modules/5.4.70-g6e3680210-dirty INSTALL_DIR=""
 #include <linux/kernel.h>
 #include <linux/pci.h>
 #include <linux/pci_ids.h>
@@ -190,7 +191,13 @@ int la9310_load_rtos_img(struct la9310_dev *la9310_dev)
 	}
 
 	fw_size =  la9310_dev->firmware_info.size;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 5, 0)
+	// TODO Figure out why old interface generates error for pci_map_single but still works
+	// Reducing kernel version so that technex 5.4.70 is covered will get rid of warning.
+	// from cache perspective we should be ok because freertos is loaded and starts up.
+	// still it would not hurt to check last argment 0 in case it hase to bne set to some
+	// specific value for region to be uncachable. Maybe it currently works also because
+	// we are marking PCIe memory region in devtree as reserved memory.
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0)
 	dma_map_page_attrs(&la9310_dev->pdev->dev,
 			virt_to_page(dma_region->vaddr),
 			offset_in_page(dma_region->vaddr), fw_size,

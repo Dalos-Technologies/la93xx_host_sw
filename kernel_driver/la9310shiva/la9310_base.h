@@ -267,18 +267,19 @@ struct irq_info {
 	int msi_val;
 	int free;
 };
-
+/*
 struct tti_priv {
 	int irq;
 	int tti_id;
 	int gpio;
 	uint64_t tti_count;
-	/* TBD Timestamp; */
+	// TBD Timestamp;
 	struct swait_queue_head tti_wq;
 	raw_spinlock_t wq_lock;
 	int tti_irq_status;
 	struct eventfd_ctx *evt_fd_ctxt;
 };
+*/
 
 /*TTI char Dev data holder */
 struct la9310_tti_device_data {
